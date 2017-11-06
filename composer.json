@@ -1,0 +1,21 @@
+{
+    "name": "veka-server/twig-renderer",
+    "description": "Twig renderer",
+    "license": "MIT",
+    "keywords": ["twig", "renderer"],
+    "authors": [
+        {
+            "name": "Vanhaezebrouck Nicolas",
+            "email": "contact@veka-server.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "VekaServer\\TwigRenderer\\" : "src/"
+        }
+    },
+    "require": {
+        "veka-server/interfaces": "^0.1",
+        "twig/twig": "~2.0"
+    }
+}
