@@ -29,6 +29,6 @@ class TwigRenderer implements RendererInterface
      */
     public function render(string $templatePath, array $data = array()): string
     {
-        return $this->twig->render($templatePath, $data);
+        return (string) $this->twig->render($templatePath, $data);
     }
 }
