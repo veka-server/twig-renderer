@@ -19,6 +19,7 @@ class TwigRenderer implements RendererInterface
         $loader = new \Twig_Loader_Filesystem($path_to_templates);
         $this->twig = new \Twig_Environment($loader, array(
             'cache' => $path_to_cache,
+            'auto_reload' => ($path_to_cache == false)
         ));
     }
 
