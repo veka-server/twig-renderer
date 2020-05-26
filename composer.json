@@ -16,6 +16,6 @@
     },
     "require": {
         "veka-server/interfaces": "^0.1.1",
-        "twig/twig": "~2.0"
+        "twig/twig": "~3.0"
     }
 }
