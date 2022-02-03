@@ -13,14 +13,22 @@ class TwigRenderer implements RendererInterface
      * constructor.
      * @param string $path_to_templates
      * @param null|string $path_to_cache
+     * @param callback|null $lang_callback
      */
-    public function __construct(string $path_to_templates, ?string $path_to_cache = null)
+    public function __construct(string $path_to_templates, ?string $path_to_cache = null, callable $lang_callback = null)
     {
         $loader = new \Twig\Loader\FilesystemLoader($path_to_templates);
         $this->twig = new \Twig\Environment($loader, array(
             'cache' => $path_to_cache,
             'auto_reload' => ($path_to_cache == false)
         ));
+        
+        if(!empty($lang_callback)){
+            $filter = new \Twig\TwigFilter('lang', function ($string) use($lang_callback) {
+                return $lang_callback($string);
+            });
+            $this->twig->addFilter($filter);
+        }
     }
 
     /**
