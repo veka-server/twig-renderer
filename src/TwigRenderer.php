@@ -11,13 +11,25 @@ class TwigRenderer implements RendererInterface
 
     /**
      * constructor.
-     * @param string $path_to_templates
+     * @param string|array $path_to_templates
      * @param null|string $path_to_cache
      * @param callback|null $lang_callback
      */
-    public function __construct(string $path_to_templates, ?string $path_to_cache = null, callable $lang_callback = null)
+    public function __construct(string|array $path_to_templates, ?string $path_to_cache = null, callable $lang_callback = null)
     {
+
         $loader = new \Twig\Loader\FilesystemLoader($path_to_templates);
+
+        if(!is_array($path_to_templates)){
+            $path_to_templates = [$path_to_templates];
+        }
+
+        foreach ($path_to_templates as $key => $path){
+            $alias = (!is_numeric($key)) ? $key : \Twig\Loader\FilesystemLoader::MAIN_NAMESPACE;
+            echo $alias;
+            $loader->setPaths($path, $alias);
+        }
+
         $this->twig = new \Twig\Environment($loader, array(
             'cache' => $path_to_cache,
             'auto_reload' => ($path_to_cache == false)
