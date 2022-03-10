@@ -26,7 +26,6 @@ class TwigRenderer implements RendererInterface
 
         foreach ($path_to_templates as $key => $path){
             $alias = (!is_numeric($key)) ? $key : \Twig\Loader\FilesystemLoader::MAIN_NAMESPACE;
-            echo $alias;
             $loader->setPaths($path, $alias);
         }
 
